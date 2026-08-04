@@ -1,0 +1,66 @@
+#ifndef CAL
+#define CAL
+#include <stdio.h>
+
+#define epoch_y 1900
+#define epoch_d MONDAY
+
+typedef enum TYPE
+{
+	CUSTOM_STRUCT = -1,
+	STATIC_DATA = -2,
+	INT = 0,
+	SIZET = 1,
+	LONG = 2,
+	FLOAT = 3,
+	DOUBLE = 4,
+	CHAR = 5,
+	STRING = 6,
+}TYPE;
+
+typedef enum WEEK_DAY
+{
+	SUNDAY = 1,
+	MONDAY,
+	TUESDAY,
+	WEDNESDAY,
+	THURSDAY,
+	FRIDAY,
+	SATURDAY,
+}WEEK_DAY;
+
+typedef enum MONTH
+{
+	JAN,
+	FEB,
+	MAR,
+	APR,
+	MAY,
+	JUN,
+	JUL,
+	AUG,
+	SEP,
+	OCT,
+	NOV,
+	DEC,
+}MONTH;
+
+void ReadNum(char *input, size_t size_of_input, TYPE type, void *var);
+static inline void zero_out_arr(void *ptr, size_t size)
+{
+	volatile unsigned char* t = ptr;
+	while(size--) *t++ = 0;
+}
+
+char UpperToLower(char in);
+void ReadChar(char *var);
+static inline void ClearInputBuffer()
+{
+	int c;
+	while((c = getchar()) != '\n' && c != EOF);
+}
+
+WEEK_DAY get_day(int year, MONTH month, int *md);
+void PrintCal(int year, MONTH month);
+
+#endif
