@@ -63,6 +63,12 @@ void PrintCal(int year, MONTH month)
 	int md;
 	WEEK_DAY wd = get_day(year, month, &md);
 
+	if (wd == -1)
+	{
+		printf("You can't chose a year greater than 3000 or a month greater than 12 !\n");
+		return;
+	}
+
 	printf("			%s	%d\n\n", months[month], year);
 
 	printf("\t\t\t_________________________________________________________\n\n\n");
